@@ -138,6 +138,7 @@
             background: rgba(255, 255, 255, 0.95);
             box-shadow: var(--shadow);
             transition: var(--transition);
+            backdrop-filter: blur(10px); /* Added blur effect */
         }
 
         header.scrolled {
@@ -193,6 +194,7 @@
             display: none;
             cursor: pointer;
             font-size: 1.5rem;
+            z-index: 1001; /* Ensure it's above other elements */
         }
 
         /* Hero Section */
@@ -204,6 +206,7 @@
             color: white;
             position: relative;
             overflow: hidden;
+            padding-top: 80px; /* Added padding to prevent header overlap */
         }
 
         .hero-content {
@@ -849,6 +852,8 @@
                 opacity: 0;
                 transition: var(--transition);
                 z-index: 999;
+                height: calc(100vh - 70px);
+                overflow-y: auto;
             }
             
             .nav-links.active {
@@ -857,7 +862,7 @@
             }
             
             .nav-links li {
-                margin: 0.8rem 0;
+                margin: 1rem 0;
             }
             
             .hamburger {
@@ -971,7 +976,6 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-<h1>_____</h1>
                     <h1>Transforming Ideas Into Visual Masterpieces</h1>
                     <p>I'm Rizwan Haider, a passionate graphic designer specializing in branding and web design that captivates and converts.</p>
                     <div class="hero-btns">
@@ -1232,7 +1236,7 @@
                         </div>
                         <div>
                             <h3>Phone</h3>
-                            <p>+92310 4316978</p>
+                            <p>+92310-4316978</p>
                         </div>
                     </div>
                     
@@ -1476,12 +1480,15 @@
                 }
             });
             
-            // Mobile menu toggle
-            hamburger.addEventListener('click', () => {
+            // Mobile menu toggle - FIXED
+            hamburger.addEventListener('click', function() {
                 navLinks.classList.toggle('active');
-                hamburger.innerHTML = navLinks.classList.contains('active') 
-                    ? '<i class="fas fa-times"></i>' 
-                    : '<i class="fas fa-bars"></i>';
+                // Toggle hamburger icon
+                if (navLinks.classList.contains('active')) {
+                    hamburger.innerHTML = '<i class="fas fa-times"></i>';
+                } else {
+                    hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+                }
             });
             
             // Close mobile menu when clicking on a link
